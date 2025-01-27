@@ -1,11 +1,11 @@
 public class GameOfLife{
 
-    public static boolean[][] createGnereation(boolean[][] board){
+    public boolean[][] createGeneration(boolean[][] board){
         int numRows = board.length;
         int numCols = board[0].length;
         int numLivingCells = 0;
 
-        boolean[][] nextBoard = new boolean[numRows][numCols];
+        boolean[][] newBoard = new boolean[numRows][numCols];
 
 
         for(int r = 0; r < numRows; r++){
@@ -14,7 +14,7 @@ public class GameOfLife{
                 //Checking neighboring cells to count up the number of living cells around the current cell
 
                 if(board[r][c] == true){ // Living Cell Check
-                    if(r < numRows && board[r+1][c] == true){
+                    if(r < numRows-1 && board[r+1][c] == true){
                         numLivingCells++;
                     }
                     if(r > 0 && board[r-1][c] == true){
@@ -23,19 +23,19 @@ public class GameOfLife{
                     if(c > 0 && board[r][c-1] == true){
                         numLivingCells++;
                     }
-                    if(c < numCols && board[r][c+1] == true){
+                    if(c < numCols-1 && board[r][c+1] == true){
                         numLivingCells++;
                     }
                     if(r > 0 && c > 0 && board[r-1][c-1] == true){
                         numLivingCells++;
                     }
-                    if(r < numRows && c < numCols && board[r+1][c+1] == true){
+                    if(r < numRows-1 && c < numCols-1 && board[r+1][c+1] == true){
                         numLivingCells++;
                     }
-                    if(r > 0 && c < numCols && board[r-1][c+1] == true){
+                    if(r > 0 && c < numCols-1 && board[r-1][c+1] == true){
                         numLivingCells++;
                     }
-                    if(r < numRows && c > 0 && board[r+1][c-1] == true){
+                    if(r < numRows-1 && c > 0 && board[r+1][c-1] == true){
                         numLivingCells++;
                     }
                 
@@ -49,28 +49,33 @@ public class GameOfLife{
                         numLivingCells = 0;
                     }
                 }else{ // Dead Cell Check
-                    if(r < numRows && board[r+1][c] == true){
+                    if(r < numRows-1 && board[r+1][c] == true){
                         numLivingCells++;
                     }
+
                     if(r > 0 && board[r-1][c] == true){
                         numLivingCells++;
                     }
+
                     if(c > 0 && board[r][c-1] == true){
                         numLivingCells++;
                     }
-                    if(c < numCols && board[r][c+1] == true){
+
+                    if(c < numCols-1 && board[r][c+1] == true){
                         numLivingCells++;
                     }
+
                     if(r > 0 && c > 0 && board[r-1][c-1] == true){
                         numLivingCells++;
                     }
-                    if(r < numRows && c < numCols && board[r+1][c+1] == true){
+
+                    if(r < numRows-1 && c < numCols-1 && board[r+1][c+1] == true){
                         numLivingCells++;
                     }
-                    if(r > 0 && c < numCols && board[r-1][c+1] == true){
+                    if(r > 0 && c < numCols-1 && board[r-1][c+1] == true){
                         numLivingCells++;
                     }
-                    if(r < numRows && c > 0 && board[r+1][c-1] == true){
+                    if(r < numRows-1 && c > 0 && board[r+1][c-1] == true){
                         numLivingCells++;
                     }
 
@@ -90,7 +95,7 @@ public class GameOfLife{
         return newBoard;
     }
     
-    public static int[][] findLivingCellLocations(boolean[][] board){
+    public int[][] findLivingCellLocations(boolean[][] board){
 
         int numRows = board.length;
         int numCols = board[0].length;
